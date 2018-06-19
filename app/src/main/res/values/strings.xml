@@ -9,4 +9,10 @@
     <string name="add_question">Add Question</string>
     <string name="delete_quiz">Delete Quiz</string>
     <string name="take_quiz">Take Quiz</string>
+    <string name="question">Question</string>
+    <string name="answer_2">answer 2</string>
+    <string name="answer_1">answer 1</string>
+    <string name="answer_3">answer 3</string>
+    <string name="answer_4">answer 4</string>
+    <string name="next">next</string>
 </resources>

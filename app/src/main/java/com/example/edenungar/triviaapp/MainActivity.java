@@ -4,12 +4,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements QuestionCreatorFragment.Callback {
 
     private QuestionCreatorFragment questionCreatorFragment;
+    private List<Question> questionsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //just put "this" because this is an activity and the fragment is not
         ButterKnife.bind(this);
+
+        questionsList = new ArrayList<>();
     }
 
     //whatever you put in this method will be executed
@@ -25,8 +31,23 @@ public class MainActivity extends AppCompatActivity {
 
         questionCreatorFragment = QuestionCreatorFragment.newInstance();
 
+        questionCreatorFragment.attachParent(this);
+
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder, questionCreatorFragment).commit();
 
     }
 
+    @Override
+    public void questionSaved(Question question) {
+
+        //adds new questions to ArrayList
+        questionsList.add(question);
+
+        //shows a Toast to confirm question has been added to list
+        Toast.makeText(this, "question saved!", Toast.LENGTH_SHORT).show();
+
+        //removes the fragment from the FrameLayout
+        getSupportFragmentManager().beginTransaction().remove(questionCreatorFragment).commit();
+
+    }
 }

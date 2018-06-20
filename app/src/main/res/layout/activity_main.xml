@@ -11,7 +11,7 @@
         android:id="@+id/add_question_button"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="170dp"
+        android:layout_marginBottom="171dp"
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
         android:paddingLeft="4dp"
@@ -21,7 +21,7 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/take_quiz_button"
         app:layout_constraintEnd_toEndOf="@+id/take_quiz_button"
-        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintHorizontal_bias="0.997"
         app:layout_constraintStart_toEndOf="@+id/delete_quiz_button"
         app:layout_constraintStart_toStartOf="@+id/take_quiz_button"
         app:layout_constraintTop_toTopOf="parent" />
@@ -71,7 +71,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.52">
 
     </FrameLayout>
 </android.support.constraint.ConstraintLayout>

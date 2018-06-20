@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -17,6 +18,16 @@ public class QuizFragment extends Fragment {
 
     @BindView(R.id.quiz_question_textview)
     protected TextView quizQuestion;
+    //have to bind buttons to be able to change the text (but not next_button bc we don't have to change that)
+    @BindView(R.id.first_answer_button)
+    protected Button firstAnswerButton;
+    @BindView(R.id.second_answer_button)
+    protected Button secondAnswerButton;
+    @BindView(R.id.third_answer_button)
+    protected Button thirdAnswerButton;
+    @BindView(R.id.fourth_answer_button)
+    protected Button fourthAnswerButton;
+
 
     @Nullable
     @Override
@@ -39,22 +50,27 @@ public class QuizFragment extends Fragment {
     }
 
     @OnClick(R.id.first_answer_button)
-    protected void firstAnswer(){
+    protected void buttonOneClicked(){
 
     }
 
     @OnClick(R.id.second_answer_button)
-    protected void secondAnswer(){
+    protected void buttonTwoClicked(){
 
     }
 
     @OnClick(R.id.third_answer_button)
-    protected void thirdAnswer(){
+    protected void buttonThreeClicked(){
 
     }
 
     @OnClick(R.id.fourth_answer_button)
-    protected void fourthAnswer(){
+    protected void buttonFourClicked(){
+
+    }
+
+    @OnClick(R.id.next_button)
+    protected void nxtButtonClicked(){
 
     }
 

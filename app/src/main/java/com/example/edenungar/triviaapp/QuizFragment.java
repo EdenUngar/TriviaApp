@@ -105,6 +105,9 @@ public class QuizFragment extends Fragment {
 
     private void checkAnswer(String answer) {
         //makes it so we go to the next question and the same question will not come up more than once
+
+        disableAnswerButtons();
+
         questionListPosition++;
 
         if (question.getCorrectAnswer().equals(answer)) {
@@ -153,13 +156,34 @@ public class QuizFragment extends Fragment {
     @OnClick(R.id.next_button)
     protected void nextButtonClicked() {
 
+        enableAnswerButtons();
+
         if (questionListPosition <= questionsList.size() - 1) {
             populateQuizContent();
         } else {
             //handles no more questions left in the list. taking user back to the main activity
             quizCallback.quizFinished(correctAnswers);
-
         }
+    }
+
+    //to disable buttons
+    private void disableAnswerButtons() {
+
+        firstAnswerButton.setEnabled(false);
+        secondAnswerButton.setEnabled(false);
+        thirdAnswerButton.setEnabled(false);
+        fourthAnswerButton.setEnabled(false);
+
+    }
+
+    //to re-enable buttons
+    private void enableAnswerButtons() {
+
+        firstAnswerButton.setEnabled(true);
+        secondAnswerButton.setEnabled(true);
+        thirdAnswerButton.setEnabled(true);
+        fourthAnswerButton.setEnabled(true);
+
     }
 
     public void attachParent(QuizCallback quizCallback) {

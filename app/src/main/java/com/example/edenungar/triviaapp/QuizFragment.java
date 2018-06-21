@@ -36,6 +36,10 @@ public class QuizFragment extends Fragment {
     private List<Question> questionsList;
     private Question question;
     private int questionListPosition = 0;
+    //variable to count how many correct answers they have for the score
+    private int correctAnswers = 0;
+
+    private QuizCallback quizCallback;
 
 
     @Nullable
@@ -73,21 +77,22 @@ public class QuizFragment extends Fragment {
         question = questionsList.get(questionListPosition);
         quizQuestion.setText(question.getQuestion());
 
-        List <Button> buttonList = new ArrayList<>();
+        List<Button> buttonList = new ArrayList<>();
         buttonList.add(firstAnswerButton);
         buttonList.add(secondAnswerButton);
         buttonList.add(thirdAnswerButton);
         buttonList.add(fourthAnswerButton);
 
-        List <String> possibleAnswersList = new ArrayList<>();
+        List<String> possibleAnswersList = new ArrayList<>();
         possibleAnswersList.add(question.getCorrectAnswer());
         possibleAnswersList.add(question.getWrongAnswerOne());
         possibleAnswersList.add(question.getWrongAnswerTwo());
         possibleAnswersList.add(question.getWrongAnswerThree());
 
+        //for each loop takes the arrayLists and allows us to randomize what answer goes on which button
         for (Button button : buttonList) {
-            //takes a random # out of 4 (the possible answersListSize)
-            int random = (int)(Math.random() * (possibleAnswersList.size() - 1));
+            //takes a random # out of 4 (the possibleAnswersList.size bc there are 4 possible answers)
+            int random = (int) Math.ceil(Math.random() * (possibleAnswersList.size() - 1));
 
             //sets text to a random answer
             button.setText(possibleAnswersList.get(random));
@@ -98,29 +103,67 @@ public class QuizFragment extends Fragment {
 
     }
 
+    private void checkAnswer(String answer) {
+        //makes it so we go to the next question and the same question will not come up more than once
+        questionListPosition++;
+
+        if (question.getCorrectAnswer().equals(answer)) {
+            //handles if they choose the right answer
+            //changes the question_text_view to correct
+            quizQuestion.setText(R.string.correct_answer_text);
+            //adds one to their overall correct score
+            correctAnswers++;
+
+        } else {
+            //changes text to say that they are incorrect and tells them the correct answer
+            quizQuestion.setText(getString(R.string.wrong_answer_text, question.getCorrectAnswer()));
+        }
+
+    }
+
+    //these take if you click a button and check then with the checkAnswer method
     @OnClick(R.id.first_answer_button)
-    protected void buttonOneClicked(){
+    protected void buttonOneClicked() {
+
+        checkAnswer(firstAnswerButton.getText().toString());
 
     }
 
     @OnClick(R.id.second_answer_button)
-    protected void buttonTwoClicked(){
+    protected void buttonTwoClicked() {
+
+        checkAnswer(secondAnswerButton.getText().toString());
 
     }
 
     @OnClick(R.id.third_answer_button)
-    protected void buttonThreeClicked(){
+    protected void buttonThreeClicked() {
+
+        checkAnswer(thirdAnswerButton.getText().toString());
 
     }
 
     @OnClick(R.id.fourth_answer_button)
-    protected void buttonFourClicked(){
+    protected void buttonFourClicked() {
+
+        checkAnswer(fourthAnswerButton.getText().toString());
 
     }
 
     @OnClick(R.id.next_button)
-    protected void nextButtonClicked(){
+    protected void nextButtonClicked() {
 
+        if (questionListPosition <= questionsList.size() - 1) {
+            populateQuizContent();
+        } else {
+            //handles no more questions left in the list. taking user back to the main activity
+            quizCallback.quizFinished(correctAnswers);
+
+        }
+    }
+
+    public interface QuizCallback {
+        void quizFinished(int correctAnswers);
     }
 
 }

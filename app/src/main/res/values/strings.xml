@@ -15,4 +15,13 @@
     <string name="answer_3">answer 3</string>
     <string name="answer_4">answer 4</string>
     <string name="next">next</string>
+    <string name="wrong_answer_text">incorrect! the correct answer is %1$s!</string>
+    <string name="correct_answer_text">correct!!!</string>
+    <string name="number_of_correct_answers">you got %1$d question(s) correct!</string>
+    <string name="quiz_finished">quiz finished!</string>
+    <string name="okay">okay</string>
+    <string name="delete_quiz_alert">delete quiz</string>
+    <string name="are_you_sure_you_want_to_delete">are you sure you want to delete the quiz?</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
 </resources>

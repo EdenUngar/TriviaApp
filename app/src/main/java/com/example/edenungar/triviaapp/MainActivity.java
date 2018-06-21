@@ -13,6 +13,7 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity implements QuestionCreatorFragment.Callback {
 
     private QuestionCreatorFragment questionCreatorFragment;
+    private QuizFragment quizFragment;
     private List<Question> questionsList;
 
     @Override
@@ -26,8 +27,8 @@ public class MainActivity extends AppCompatActivity implements QuestionCreatorFr
     }
 
     //whatever you put in this method will be executed
-    @OnClick (R.id.add_question_button)
-    protected void addQuestionClicked(){
+    @OnClick(R.id.add_question_button)
+    protected void addQuestionClicked() {
 
         questionCreatorFragment = QuestionCreatorFragment.newInstance();
 
@@ -50,4 +51,24 @@ public class MainActivity extends AppCompatActivity implements QuestionCreatorFr
         getSupportFragmentManager().beginTransaction().remove(questionCreatorFragment).commit();
 
     }
+
+    @OnClick(R.id.take_quiz_button)
+    public void takeQuizClicked() {
+
+        if (questionsList.isEmpty()) {
+            //handle toast for if there are no questions saved
+            Toast.makeText(this, "there are no questions saved", Toast.LENGTH_SHORT).show();
+        } else {
+            //launch fragment, pass in a parcelable array
+            quizFragment = QuizFragment.newInstance();
+
+            //will attach to parent later
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder, quizFragment).commit();
+
+            Bundle
+        }
+
+    }
+
 }

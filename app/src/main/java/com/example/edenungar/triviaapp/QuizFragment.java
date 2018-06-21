@@ -70,7 +70,7 @@ public class QuizFragment extends Fragment {
     }
 
     @OnClick(R.id.next_button)
-    protected void nxtButtonClicked(){
+    protected void nextButtonClicked(){
 
     }
 

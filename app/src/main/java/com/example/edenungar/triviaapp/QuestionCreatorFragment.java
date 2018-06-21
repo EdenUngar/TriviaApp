@@ -54,6 +54,7 @@ public class QuestionCreatorFragment extends Fragment {
     @OnClick(R.id.save_question_button)
     protected void addQuestion() {
 
+        //handles if the user leaves an EditTExt blank
         if (question.getText().toString().isEmpty() || correctAnswerInput.getText().toString().isEmpty() || firstWrongAnswerInput.getText().toString().isEmpty() || secondWrongAnswerInput.getText().toString().isEmpty() || thirdWrongAnswerInput.getText().toString().isEmpty()) {
             //don't forget the .show(); because if you do guess what? it won't show!!!
             Toast.makeText(getActivity(), "all fields are required to add a question", Toast.LENGTH_SHORT).show();

@@ -85,6 +85,17 @@ public class QuizFragment extends Fragment {
         possibleAnswersList.add(question.getWrongAnswerTwo());
         possibleAnswersList.add(question.getWrongAnswerThree());
 
+        for (Button button : buttonList) {
+            //takes a random # out of 4 (the possible answersListSize)
+            int random = (int)(Math.random() * (possibleAnswersList.size() - 1));
+
+            //sets text to a random answer
+            button.setText(possibleAnswersList.get(random));
+
+            //removes the answer we put on a button already so we don't have two of the same answers
+            possibleAnswersList.remove(random);
+        }
+
     }
 
     @OnClick(R.id.first_answer_button)

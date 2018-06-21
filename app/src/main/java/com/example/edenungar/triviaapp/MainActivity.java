@@ -1,5 +1,6 @@
 package com.example.edenungar.triviaapp;
 
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -15,6 +16,8 @@ public class MainActivity extends AppCompatActivity implements QuestionCreatorFr
     private QuestionCreatorFragment questionCreatorFragment;
     private QuizFragment quizFragment;
     private List<Question> questionsList;
+
+    public static final String QUESTIONS_LIST = "questions_list";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +69,10 @@ public class MainActivity extends AppCompatActivity implements QuestionCreatorFr
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder, quizFragment).commit();
 
-            Bundle
+            Bundle bundle = new Bundle();
+
+            bundle.putParcelableArrayList(QUESTIONS_LIST, (ArrayList<? extends Parcelable>) questionsList);
+
         }
 
     }

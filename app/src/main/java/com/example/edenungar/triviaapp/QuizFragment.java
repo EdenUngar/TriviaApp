@@ -10,9 +10,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.example.edenungar.triviaapp.MainActivity.QUESTIONS_LIST;
 
 public class QuizFragment extends Fragment {
 
@@ -27,6 +32,10 @@ public class QuizFragment extends Fragment {
     protected Button thirdAnswerButton;
     @BindView(R.id.fourth_answer_button)
     protected Button fourthAnswerButton;
+
+    private List<Question> questionsList;
+    private Question question;
+    private int questionListPosition = 0;
 
 
     @Nullable
@@ -47,6 +56,35 @@ public class QuizFragment extends Fragment {
         QuizFragment fragment = new QuizFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        questionsList = getArguments().getParcelableArrayList(QUESTIONS_LIST);
+
+        populateQuizContent();
+
+    }
+
+    private void populateQuizContent() {
+
+        question = questionsList.get(questionListPosition);
+        quizQuestion.setText(question.getQuestion());
+
+        List <Button> buttonList = new ArrayList<>();
+        buttonList.add(firstAnswerButton);
+        buttonList.add(secondAnswerButton);
+        buttonList.add(thirdAnswerButton);
+        buttonList.add(fourthAnswerButton);
+
+        List <String> possibleAnswersList = new ArrayList<>();
+        possibleAnswersList.add(question.getCorrectAnswer());
+        possibleAnswersList.add(question.getWrongAnswerOne());
+        possibleAnswersList.add(question.getWrongAnswerTwo());
+        possibleAnswersList.add(question.getWrongAnswerThree());
+
     }
 
     @OnClick(R.id.first_answer_button)

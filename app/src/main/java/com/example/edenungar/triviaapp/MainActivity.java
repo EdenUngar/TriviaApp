@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements QuestionCreatorFr
             //launch fragment, pass in a parcelable array
             quizFragment = QuizFragment.newInstance();
 
-            //will attach to parent later
+            quizFragment.attachParent(this);
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder, quizFragment).commit();
 

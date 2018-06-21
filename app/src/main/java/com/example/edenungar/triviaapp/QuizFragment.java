@@ -162,6 +162,12 @@ public class QuizFragment extends Fragment {
         }
     }
 
+    public void attachParent(QuizCallback quizCallback) {
+
+        this.quizCallback = quizCallback;
+
+    }
+
     public interface QuizCallback {
         void quizFinished(int correctAnswers);
     }
